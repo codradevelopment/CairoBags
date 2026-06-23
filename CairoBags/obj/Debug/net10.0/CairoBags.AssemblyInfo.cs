@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CairoBags")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b73818c3656d290e98492b7f16fbc2759b8eb803")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f71c5a7a015f13dcfbed251c8d632ef9b2d479ae")]
 [assembly: System.Reflection.AssemblyProductAttribute("CairoBags")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CairoBags")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
