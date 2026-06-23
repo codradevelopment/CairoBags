@@ -1,0 +1,737 @@
+{
+  "base": "http://localhost:5073",
+  "ts": "2026-06-22T17:03:32.201Z",
+  "report": [
+    {
+      "flow": "Categories",
+      "endpoint": "GET /api/categories",
+      "live": true,
+      "status": 200,
+      "ms": 243,
+      "sample": [
+        {
+          "id": 1,
+          "parentCategoryId": null,
+          "imageUrl": "/FileStorage/categories/handbags.jpg",
+          "sortOrder": 1,
+          "isActive": true,
+          "isDeleted": false,
+          "createdAt": "2026-06-21T22:38:24.0960701Z",
+          "updatedAt": null,
+          "arabic": {
+            "languageCode": "ar",
+            "name": "حقائب يد",
+            "description": "تشكيلة مميزة من حقائب اليد النسائية.",
+            "slug": "handbags-ar",
+            "metaTitle": "حقائب يد | كايرو باجز",
+            "metaDescription": "أفضل حقائب اليد العصرية من كايرو باجز."
+          },
+          "english": {
+            "languageCode": "en",
+            "name": "Handbags",
+            "description": "Premium collection of women's handbags.",
+            "slug": "handbags",
+            "metaTitle": "Handbags | Cairo Bags",
+            "metaDescription": "Discover premium handbags from Cairo Bags."
+          }
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Products",
+      "endpoint": "GET /api/products",
+      "live": true,
+      "status": 200,
+      "ms": 356,
+      "sample": [
+        {
+          "id": 1,
+          "categoryId": 1,
+          "status": 1,
+          "compareAtPrice": null,
+          "isFeatured": true,
+          "isNewArrival": true,
+          "averageRating": 0,
+          "reviewCount": 0,
+          "publishedAt": "2026-06-21T22:40:05.0329245Z",
+          "arabic": {
+            "languageCode": "ar",
+            "name": "حقيبة جلد سوداء",
+            "shortDescription": null,
+            "description": "حقيبة جلد سوداء فاخرة.",
+            "slug": "black-leather-bag-ar",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "english": {
+            "languageCode": "en",
+            "name": "Black Leather Bag",
+            "shortDescription": null,
+            "description": "Premium black leather bag.",
+            "slug": "black-leather-bag",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "primaryImageUrl": "/FileStorage/products/sample.jpg",
+          "lowestPrice": 1200,
+          "highestPrice": 1200,
+          "totalStock": 10,
+          "isInStock": true
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Product Details",
+      "endpoint": "GET /api/products/1",
+      "live": true,
+      "status": 200,
+      "ms": 191,
+      "sample": {
+        "isDeleted": false,
+        "totalSold": 0,
+        "createdAt": "2026-06-21T22:40:05.0329245Z",
+        "updatedAt": null,
+        "images": [
+          {
+            "id": 1,
+            "variantId": 1,
+            "imageUrl": "/FileStorage/products/sample.jpg",
+            "thumbnailUrl": null,
+            "altTextAr": null,
+            "altTextEn": null,
+            "isPrimary": true,
+            "sortOrder": 1
+          }
+        ],
+        "variants": [
+          {
+            "id": 1,
+            "colorNameAr": "أسود",
+            "colorNameEn": "Black",
+            "sku": "BLK-BAG-001",
+            "price": 1200,
+            "compareAtPrice": null,
+            "status": 1,
+            "isDefault": true,
+            "quantityOnHand": 10,
+            "quantityReserved": 0,
+            "availableStock": 10,
+            "lowStockThreshold": 2,
+            "isInStock": true
+          }
+        ],
+        "id": 1,
+        "categoryId": 1,
+        "status": 1,
+        "compareAtPrice": null,
+        "isFeatured": true,
+        "isNewArrival": true,
+        "averageRating": 0,
+        "reviewCount": 0,
+        "publishedAt": "2026-06-21T22:40:05.0329245Z",
+        "arabic": {
+          "languageCode": "ar",
+          "name": "حقيبة جلد سوداء",
+          "shortDescription": null,
+          "description": "حقيبة جلد سوداء فاخرة.",
+          "slug": "black-leather-bag-ar",
+          "metaTitle": null,
+          "metaDescription": null
+        },
+        "english": {
+          "languageCode": "en",
+          "name": "Black Leather Bag",
+          "shortDescription": null,
+          "description": "Premium black leather bag.",
+          "slug": "black-leather-bag",
+          "metaTitle": null,
+          "metaDescription": null
+        },
+        "primaryImageUrl": "/FileStorage/products/sample.jpg",
+        "lowestPrice": 1200,
+        "highestPrice": 1200
+      },
+      "notes": []
+    },
+    {
+      "flow": "Home/Featured",
+      "endpoint": "GET /api/products/featured",
+      "live": true,
+      "status": 200,
+      "ms": 114,
+      "sample": [
+        {
+          "id": 1,
+          "categoryId": 1,
+          "status": 1,
+          "compareAtPrice": null,
+          "isFeatured": true,
+          "isNewArrival": true,
+          "averageRating": 0,
+          "reviewCount": 0,
+          "publishedAt": "2026-06-21T22:40:05.0329245Z",
+          "arabic": {
+            "languageCode": "ar",
+            "name": "حقيبة جلد سوداء",
+            "shortDescription": null,
+            "description": "حقيبة جلد سوداء فاخرة.",
+            "slug": "black-leather-bag-ar",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "english": {
+            "languageCode": "en",
+            "name": "Black Leather Bag",
+            "shortDescription": null,
+            "description": "Premium black leather bag.",
+            "slug": "black-leather-bag",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "primaryImageUrl": "/FileStorage/products/sample.jpg",
+          "lowestPrice": 1200,
+          "highestPrice": 1200,
+          "totalStock": 10,
+          "isInStock": true
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Home/NewArrivals",
+      "endpoint": "GET /api/products/new-arrivals",
+      "live": true,
+      "status": 200,
+      "ms": 104,
+      "sample": [
+        {
+          "id": 1,
+          "categoryId": 1,
+          "status": 1,
+          "compareAtPrice": null,
+          "isFeatured": true,
+          "isNewArrival": true,
+          "averageRating": 0,
+          "reviewCount": 0,
+          "publishedAt": "2026-06-21T22:40:05.0329245Z",
+          "arabic": {
+            "languageCode": "ar",
+            "name": "حقيبة جلد سوداء",
+            "shortDescription": null,
+            "description": "حقيبة جلد سوداء فاخرة.",
+            "slug": "black-leather-bag-ar",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "english": {
+            "languageCode": "en",
+            "name": "Black Leather Bag",
+            "shortDescription": null,
+            "description": "Premium black leather bag.",
+            "slug": "black-leather-bag",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "primaryImageUrl": "/FileStorage/products/sample.jpg",
+          "lowestPrice": 1200,
+          "highestPrice": 1200,
+          "totalStock": 10,
+          "isInStock": true
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Search",
+      "endpoint": "GET /api/products/search?q=bag",
+      "live": true,
+      "status": 200,
+      "ms": 23,
+      "sample": [
+        {
+          "id": 1,
+          "categoryId": 1,
+          "status": 1,
+          "compareAtPrice": null,
+          "isFeatured": true,
+          "isNewArrival": true,
+          "averageRating": 0,
+          "reviewCount": 0,
+          "publishedAt": "2026-06-21T22:40:05.0329245Z",
+          "arabic": {
+            "languageCode": "ar",
+            "name": "حقيبة جلد سوداء",
+            "shortDescription": null,
+            "description": "حقيبة جلد سوداء فاخرة.",
+            "slug": "black-leather-bag-ar",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "english": {
+            "languageCode": "en",
+            "name": "Black Leather Bag",
+            "shortDescription": null,
+            "description": "Premium black leather bag.",
+            "slug": "black-leather-bag",
+            "metaTitle": null,
+            "metaDescription": null
+          },
+          "primaryImageUrl": "/FileStorage/products/sample.jpg",
+          "lowestPrice": 1200,
+          "highestPrice": 1200,
+          "totalStock": 10,
+          "isInStock": true
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Register",
+      "endpoint": "POST /api/Account/register",
+      "live": true,
+      "status": 200,
+      "ms": 2024,
+      "sample": {
+        "id": "e4147d4b-dc59-42a6-b456-38fd890d6685",
+        "userName": "audituser_1782147806240",
+        "name": "audituser_1782147806240",
+        "email": "audit_1782147806240@cairobags.test",
+        "phoneNumber": null,
+        "profileImageUrl": null,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJlNDE0N2Q0Yi1kYzU5LTQyYTYtYjQ1Ni0zOGZkODkwZDY2ODUiLCJzdWIiOiJlNDE0N2Q0Yi1kYzU5LTQyYTYtYjQ1Ni0zOGZkODkwZDY2ODUiLCJnaXZlbl9uYW1lIjoiYXVkaXR1c2VyXzE3ODIxNDc4MDYyNDAiLCJlbWFpbCI6ImF1ZGl0XzE3ODIxNDc4MDYyNDBAY2Fpcm9iYWdzLnRlc3QiLCJqdGkiOiJhNzY1OWU3Ny04MjJhLTQxNjQtOGY4Yy1jYjFlYjQ0MjdlNDUiLCJyb2xlIjoiQ3VzdG9tZXIiLCJuYmYiOjE3ODIxNDc4MDksImV4cCI6MTc4MjE1NTAwOSwiaWF0IjoxNzgyMTQ3ODA5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTkyIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE5MiJ9.eNZqvw1nPybeeBA4QBJzAg2Dqum2xfvojuPkTqUu99c",
+        "refreshToken": "GXpXOeulTaOrEfkVdDLA5ET2wKsqmj16ORPaXdz9Jtq217HCsrkM/ob5AkX4MSvDKEYpTRFkP5YRmOrChVHLCw==",
+        "role": [
+          "Customer"
+        ],
+        "mustChangePassword": false,
+        "authProvider": "Local",
+        "hasPassword": true,
+        "isFirstLogin": false,
+        "isGoogleUser": false,
+        "notificationSettings": null
+      },
+      "notes": []
+    },
+    {
+      "flow": "Login",
+      "endpoint": "POST /api/Account/LogIn",
+      "live": true,
+      "status": 200,
+      "ms": 191,
+      "sample": {
+        "id": "e4147d4b-dc59-42a6-b456-38fd890d6685",
+        "userName": "audituser_1782147806240",
+        "name": "audituser_1782147806240",
+        "email": "audit_1782147806240@cairobags.test",
+        "phoneNumber": "01047806240",
+        "profileImageUrl": null,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJlNDE0N2Q0Yi1kYzU5LTQyYTYtYjQ1Ni0zOGZkODkwZDY2ODUiLCJzdWIiOiJlNDE0N2Q0Yi1kYzU5LTQyYTYtYjQ1Ni0zOGZkODkwZDY2ODUiLCJnaXZlbl9uYW1lIjoiYXVkaXR1c2VyXzE3ODIxNDc4MDYyNDAiLCJlbWFpbCI6ImF1ZGl0XzE3ODIxNDc4MDYyNDBAY2Fpcm9iYWdzLnRlc3QiLCJqdGkiOiI5MWNlZGNiNy1kNWQ5LTQ1ZGQtODRkNC1kODE3ZTJmY2VlOTciLCJyb2xlIjoiQ3VzdG9tZXIiLCJuYmYiOjE3ODIxNDc4MDksImV4cCI6MTc4MjE1NTAwOSwiaWF0IjoxNzgyMTQ3ODA5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MTkyIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzE5MiJ9.zXXCw3uECGGIGmK24XgH_wdjE41OzJZDCIscKwN3vIg",
+        "refreshToken": "ju0Aj1sKevY/a1OR7cKNAfT54qVRj2FGXhYHOAH69YYt5kmqmFA3JMyjM8yezJxQPA7mo6+XNWcshHS0ZFcjAQ==",
+        "role": [
+          "Customer"
+        ],
+        "mustChangePassword": false,
+        "authProvider": "Local",
+        "hasPassword": true,
+        "isFirstLogin": false,
+        "isGoogleUser": false,
+        "notificationSettings": null
+      },
+      "notes": []
+    },
+    {
+      "flow": "Profile Update",
+      "endpoint": "PUT /api/Account/Me",
+      "live": true,
+      "status": 200,
+      "ms": 176,
+      "sample": {
+        "id": "e4147d4b-dc59-42a6-b456-38fd890d6685",
+        "userName": "audituser_1782147806240",
+        "name": "audituser_1782147806240",
+        "email": "audit_1782147806240@cairobags.test",
+        "phoneNumber": "01047806240",
+        "profileImageUrl": null,
+        "token": "",
+        "refreshToken": null,
+        "role": [
+          "Customer"
+        ],
+        "mustChangePassword": false,
+        "authProvider": "Local",
+        "hasPassword": true,
+        "isFirstLogin": false,
+        "isGoogleUser": false,
+        "notificationSettings": null
+      },
+      "notes": []
+    },
+    {
+      "flow": "Profile Read",
+      "endpoint": "GET /api/Account/Me",
+      "live": true,
+      "status": 200,
+      "ms": 26,
+      "sample": {
+        "id": "e4147d4b-dc59-42a6-b456-38fd890d6685",
+        "userName": "audituser_1782147806240",
+        "name": "audituser_1782147806240",
+        "email": "audit_1782147806240@cairobags.test",
+        "phoneNumber": "01047806240",
+        "profileImageUrl": null,
+        "token": "",
+        "refreshToken": null,
+        "role": [
+          "Customer"
+        ],
+        "mustChangePassword": false,
+        "authProvider": "Local",
+        "hasPassword": true,
+        "isFirstLogin": false,
+        "isGoogleUser": false,
+        "notificationSettings": null
+      },
+      "notes": []
+    },
+    {
+      "flow": "Cart (guest)",
+      "endpoint": "GET /api/cart",
+      "live": true,
+      "status": 200,
+      "ms": 73,
+      "sample": {
+        "cartId": null,
+        "sessionId": "audit-session-1782147806240",
+        "lastActivityAt": null,
+        "itemsCount": 0,
+        "subTotal": 0,
+        "items": []
+      },
+      "notes": []
+    },
+    {
+      "flow": "Add To Cart",
+      "endpoint": "POST /api/cart/items",
+      "live": true,
+      "status": 200,
+      "ms": 590,
+      "sample": {
+        "cartId": 1,
+        "sessionId": "audit-session-1782147806240",
+        "lastActivityAt": "2026-06-22T17:03:30.0770869Z",
+        "itemsCount": 1,
+        "subTotal": 1200,
+        "items": [
+          {
+            "productId": 1,
+            "variantId": 1,
+            "productNameAr": "حقيبة جلد سوداء",
+            "productNameEn": "Black Leather Bag",
+            "colorNameAr": "أسود",
+            "colorNameEn": "Black",
+            "imageUrl": "/FileStorage/products/sample.jpg",
+            "unitPrice": 1200,
+            "quantity": 1,
+            "lineTotal": 1200,
+            "availableStock": 10,
+            "stockChanged": false,
+            "maxAllowedQuantity": 10
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "flow": "Cart (auth)",
+      "endpoint": "GET /api/cart",
+      "live": true,
+      "status": 200,
+      "ms": 36,
+      "sample": {
+        "cartId": null,
+        "sessionId": null,
+        "lastActivityAt": null,
+        "itemsCount": 0,
+        "subTotal": 0,
+        "items": []
+      },
+      "notes": []
+    },
+    {
+      "flow": "Shipping Addresses",
+      "endpoint": "POST /api/shipping-addresses",
+      "live": true,
+      "status": 200,
+      "ms": 105,
+      "sample": {
+        "id": 1,
+        "fullName": "Audit User",
+        "phoneNumber": "01047806240",
+        "governorate": "Cairo",
+        "city": "Cairo",
+        "addressLine1": "123 Audit St",
+        "addressLine2": null,
+        "postalCode": null,
+        "isDefault": true
+      },
+      "notes": []
+    },
+    {
+      "flow": "Order Creation / Checkout",
+      "endpoint": "POST /api/checkout",
+      "live": true,
+      "status": 200,
+      "ms": 925,
+      "sample": {
+        "orderId": 1,
+        "orderNumber": "CB-2026-000001",
+        "subTotal": 1200,
+        "discountAmount": 0,
+        "shippingFee": 50,
+        "totalAmount": 1250,
+        "paymentMethod": "InstaPay",
+        "paymentStatus": "Pending",
+        "orderStatus": "AwaitingPayment",
+        "nextStepMessage": "Your order has been created. Complete payment via InstaPay and upload your payment proof."
+      },
+      "notes": []
+    },
+    {
+      "flow": "Account Orders",
+      "endpoint": "GET /api/orders",
+      "live": true,
+      "status": 200,
+      "ms": 116,
+      "sample": [
+        {
+          "orderId": 1,
+          "orderNumber": "CB-2026-000001",
+          "createdAt": "2026-06-22T17:03:30.9207322Z",
+          "orderStatus": "AwaitingPayment",
+          "paymentStatus": "Pending",
+          "totalAmount": 1250,
+          "itemsCount": 1,
+          "primaryProductImage": "/FileStorage/products/sample.jpg"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Order Details",
+      "endpoint": "GET /api/orders/1",
+      "live": true,
+      "status": 200,
+      "ms": 128,
+      "sample": {
+        "order": {
+          "orderId": 1,
+          "orderNumber": "CB-2026-000001",
+          "createdAt": "2026-06-22T17:03:30.9207322Z",
+          "orderStatus": "AwaitingPayment",
+          "subTotal": 1200,
+          "shippingFee": 50,
+          "discountAmount": 0,
+          "totalAmount": 1250,
+          "currencyCode": "EGP",
+          "notes": "integration audit"
+        },
+        "shippingAddress": {
+          "fullName": "Audit User",
+          "phoneNumber": "01047806240",
+          "governorate": "Cairo",
+          "city": "Cairo",
+          "addressLine1": "123 Audit St",
+          "addressLine2": null,
+          "postalCode": null
+        },
+        "payment": {
+          "paymentId": 1,
+          "paymentMethod": "InstaPay",
+          "paymentStatus": "Pending",
+          "amount": 1250,
+          "senderName": null,
+          "senderPhone": null,
+          "transactionReference": null
+        },
+        "items": [
+          {
+            "orderItemId": 1,
+            "productId": 1,
+            "productVariantId": 1,
+            "productNameAr": "حقيبة جلد سوداء",
+            "productNameEn": "Black Leather Bag",
+            "colorNameAr": "أسود",
+            "colorNameEn": "Black",
+            "sku": "BLK-BAG-001",
+            "quantity": 1,
+            "unitPrice": 1200,
+            "lineTotal": 1200,
+            "imageUrl": "/FileStorage/products/sample.jpg"
+          }
+        ],
+        "coupon": null,
+        "statusHistory": [
+          {
+            "oldStatus": null,
+            "newStatus": "AwaitingPayment",
+            "notes": "Order created at checkout.",
+            "createdAt": "2026-06-22T17:03:30.9207322Z"
+          }
+        ]
+      },
+      "notes": []
+    },
+    {
+      "flow": "Payment by Order",
+      "endpoint": "GET /api/payments/1",
+      "live": true,
+      "status": 200,
+      "ms": 81,
+      "sample": {
+        "orderId": 1,
+        "paymentId": 1,
+        "orderNumber": "CB-2026-000001",
+        "paymentMethod": "InstaPay",
+        "paymentStatus": "Pending",
+        "orderStatus": "AwaitingPayment",
+        "amount": 1250,
+        "senderName": null,
+        "senderPhone": null,
+        "transactionReference": null,
+        "proofImages": []
+      },
+      "notes": []
+    },
+    {
+      "flow": "Notifications",
+      "endpoint": "GET /api/Notifications",
+      "live": true,
+      "status": 200,
+      "ms": 84,
+      "sample": {
+        "total": 0,
+        "page": 1,
+        "pageSize": 20,
+        "items": []
+      },
+      "notes": []
+    },
+    {
+      "flow": "Notifications unread",
+      "endpoint": "GET /api/Notifications/unread-count",
+      "live": true,
+      "status": 200,
+      "ms": 26,
+      "sample": {
+        "count": 0
+      },
+      "notes": []
+    },
+    {
+      "flow": "Admin flows",
+      "endpoint": "POST /api/Account/LogIn",
+      "live": false,
+      "status": 401,
+      "ms": 0,
+      "notes": [
+        "No admin credentials available — admin endpoints tested unauthenticated only"
+      ]
+    },
+    {
+      "flow": "Admin Categories CRUD",
+      "endpoint": "POST /api/admin/categories",
+      "live": false,
+      "status": 401,
+      "ms": 0,
+      "notes": [
+        "Skipped — admin auth unavailable"
+      ]
+    },
+    {
+      "flow": "Admin Products CRUD",
+      "endpoint": "POST /api/admin/products",
+      "live": false,
+      "status": 401,
+      "ms": 0,
+      "notes": [
+        "Skipped — admin auth unavailable"
+      ]
+    },
+    {
+      "flow": "Admin Inventory",
+      "endpoint": "GET /api/admin/inventory",
+      "live": true,
+      "status": 200,
+      "ms": 93,
+      "sample": [
+        {
+          "inventoryId": 1,
+          "productVariantId": 1,
+          "productId": 1,
+          "sku": "BLK-BAG-001",
+          "productNameEn": "Black Leather Bag",
+          "productNameAr": "حقيبة جلد سوداء",
+          "colorNameEn": "Black",
+          "colorNameAr": "أسود",
+          "quantityOnHand": 10,
+          "quantityReserved": 1,
+          "availableStock": 9,
+          "lowStockThreshold": 2,
+          "isLowStock": false,
+          "isInStock": true
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Admin Orders",
+      "endpoint": "GET /api/admin/orders",
+      "live": true,
+      "status": 200,
+      "ms": 103,
+      "sample": [
+        {
+          "orderId": 1,
+          "orderNumber": "CB-2026-000001",
+          "customerName": "Audit User",
+          "customerEmail": "audit_1782147806240@cairobags.test",
+          "orderStatus": "AwaitingPayment",
+          "paymentStatus": "Pending",
+          "totalAmount": 1250,
+          "itemsCount": 1,
+          "createdAt": "2026-06-22T17:03:30.9207322Z"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "flow": "Admin Payments",
+      "endpoint": "GET /api/admin/payments/pending",
+      "live": true,
+      "status": 200,
+      "ms": 105,
+      "sample": [],
+      "notes": []
+    },
+    {
+      "flow": "Admin Products list (FE)",
+      "endpoint": "GET /api/products?includeDraft=true",
+      "live": true,
+      "status": 200,
+      "notes": [
+        "MISMATCH: ProductsPage searches defaultSku/DefaultSku but ProductSummaryDto has no DefaultSku — SKU search always empty"
+      ]
+    },
+    {
+      "flow": "Admin Product Edit (FE)",
+      "endpoint": "GET /api/products/{id}",
+      "live": true,
+      "notes": [
+        "ProductFormPage maps variant.quantity from quantityOnHand — matches ProductVariantDto.QuantityOnHand",
+        "ProductFormPage does not send Arabic short/description fields on create — optional backend fields only"
+      ]
+    }
+  ]
+}

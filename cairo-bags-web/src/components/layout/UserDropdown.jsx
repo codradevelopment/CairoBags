@@ -1,0 +1,117 @@
+import { useEffect, useRef, useState } from "react";
+import { Button } from "../ui/Button.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { useLocale } from "./LanguageSwitcher.jsx";
+import { cn } from "../../utils/cn.js";
+
+function UserIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M4 20c0-4 3.58-7 8-7s8 3 8 7"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function UserDropdown({ className }) {
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
+  const { locale } = useLocale();
+  const [open, setOpen] = useState(false);
+  const rootRef = useRef(null);
+
+  useEffect(() => {
+    const onDocClick = (event) => {
+      if (!rootRef.current?.contains(event.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, []);
+
+  const labels = {
+    account: locale === "ar" ? "حسابي" : "My Account",
+    orders: locale === "ar" ? "طلباتي" : "My Orders",
+    admin: locale === "ar" ? "لوحة الإدارة" : "Admin Panel",
+    login: locale === "ar" ? "تسجيل الدخول" : "Sign In",
+    register: locale === "ar" ? "إنشاء حساب" : "Register",
+    logout: locale === "ar" ? "تسجيل الخروج" : "Sign Out",
+  };
+
+  const displayName = user?.name || user?.userName || user?.email || labels.account;
+
+  return (
+    <div ref={rootRef} className={cn("relative", className)}>
+      <Button
+        type="button"
+        variant="ghost"
+        size={isAuthenticated ? "md" : "sm"}
+        className="gap-2"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <UserIcon />
+        <span className="hidden max-w-[8rem] truncate sm:inline">{isAuthenticated ? displayName : labels.login}</span>
+      </Button>
+
+      {open ? (
+        <div
+          className={cn(
+            "absolute end-0 z-50 mt-2 min-w-[12rem] overflow-hidden rounded-lg border border-brand-border",
+            "bg-brand-surface shadow-soft animate-slide-down"
+          )}
+          role="menu"
+        >
+          {isAuthenticated ? (
+            <>
+              <div className="border-b border-brand-border px-4 py-3">
+                <p className="truncate text-sm font-medium text-brand-text">{displayName}</p>
+                {user?.email ? (
+                  <p className="truncate text-xs text-brand-muted">{user.email}</p>
+                ) : null}
+              </div>
+              <nav className="py-1">
+                <a href="/account" className="block px-4 py-2.5 text-sm hover:bg-brand-secondary" role="menuitem">
+                  {labels.account}
+                </a>
+                <a href="/account/orders" className="block px-4 py-2.5 text-sm hover:bg-brand-secondary" role="menuitem">
+                  {labels.orders}
+                </a>
+                {isAdmin ? (
+                  <a href="/admin" className="block px-4 py-2.5 text-sm hover:bg-brand-secondary" role="menuitem">
+                    {labels.admin}
+                  </a>
+                ) : null}
+              </nav>
+              <div className="border-t border-brand-border p-1">
+                <button
+                  type="button"
+                  className="w-full rounded-md px-4 py-2.5 text-start text-sm text-red-800 hover:bg-red-50 dark:hover:bg-red-950/30"
+                  role="menuitem"
+                  onClick={() => {
+                    setOpen(false);
+                    logout();
+                  }}
+                >
+                  {labels.logout}
+                </button>
+              </div>
+            </>
+          ) : (
+            <nav className="py-1">
+              <a href="/login" className="block px-4 py-2.5 text-sm hover:bg-brand-secondary" role="menuitem">
+                {labels.login}
+              </a>
+              <a href="/register" className="block px-4 py-2.5 text-sm hover:bg-brand-secondary" role="menuitem">
+                {labels.register}
+              </a>
+            </nav>
+          )}
+        </div>
+      ) : null}
+    </div>
+  );
+}

@@ -1,0 +1,122 @@
+import { useEffect, useState } from "react";
+import { Modal } from "../ui/Modal.jsx";
+import { Button, Input, InputGroup, Label, Textarea } from "../ui/index.js";
+import { useLocale } from "../layout/LanguageSwitcher.jsx";
+import { StatusBadge } from "./StatusBadge.jsx";
+import { formatPrice } from "../../utils/productHelpers.js";
+import { resolveMediaUrl } from "../../utils/mediaUrl.js";
+import * as adminPaymentService from "../../services/adminPaymentService.js";
+
+export function PaymentReviewModal({ open, paymentId, onClose, onReviewed }) {
+  const { locale } = useLocale();
+  const [payment, setPayment] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [rejectionReason, setRejectionReason] = useState("");
+
+  useEffect(() => {
+    if (!open || !paymentId) return;
+    setLoading(true);
+    adminPaymentService
+      .getAdminPaymentById(paymentId)
+      .then(setPayment)
+      .catch(() => setPayment(null))
+      .finally(() => setLoading(false));
+  }, [open, paymentId]);
+
+  async function handleApprove() {
+    setSubmitting(true);
+    try {
+      await adminPaymentService.approvePayment(paymentId);
+      onReviewed?.();
+      onClose();
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  async function handleReject() {
+    if (!rejectionReason.trim()) return;
+    setSubmitting(true);
+    try {
+      await adminPaymentService.rejectPayment(paymentId, {
+        rejectionReason: rejectionReason.trim(),
+      });
+      onReviewed?.();
+      onClose();
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <Modal
+      open={open}
+      onClose={onClose}
+      title={locale === "ar" ? "مراجعة الدفع" : "Review Payment"}
+      size="lg"
+      footer={
+        payment ? (
+          <>
+            <Button variant="ghost" onClick={onClose} disabled={submitting}>
+              {locale === "ar" ? "إغلاق" : "Close"}
+            </Button>
+            <Button variant="danger" onClick={handleReject} loading={submitting}>
+              {locale === "ar" ? "رفض" : "Reject"}
+            </Button>
+            <Button variant="accent" onClick={handleApprove} loading={submitting}>
+              {locale === "ar" ? "موافقة" : "Approve"}
+            </Button>
+          </>
+        ) : null
+      }
+    >
+      {loading ? (
+        <p className="text-sm text-brand-muted">{locale === "ar" ? "جاري التحميل..." : "Loading..."}</p>
+      ) : null}
+      {payment ? (
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="font-medium">{payment.orderNumber ?? payment.OrderNumber}</p>
+            <StatusBadge
+              status={payment.orderStatus ?? payment.OrderStatus}
+              paymentStatus={payment.paymentStatus ?? payment.PaymentStatus}
+            />
+          </div>
+          <p className="text-sm text-brand-muted">
+            {payment.customerName ?? payment.CustomerName} · {payment.customerEmail ?? payment.CustomerEmail}
+          </p>
+          <p className="font-display text-xl text-brand-primary">
+            {formatPrice(payment.amount ?? payment.Amount, locale)}
+          </p>
+          {payment.transactionReference ?? payment.TransactionReference ? (
+            <p className="text-sm">
+              {locale === "ar" ? "المرجع: " : "Ref: "}
+              {payment.transactionReference ?? payment.TransactionReference}
+            </p>
+          ) : null}
+          {(payment.proofImages ?? payment.ProofImages ?? []).length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {(payment.proofImages ?? payment.ProofImages).map((img) => (
+                <img
+                  key={img.id ?? img.Id}
+                  src={resolveMediaUrl(img.imageUrl ?? img.ImageUrl)}
+                  alt=""
+                  className="h-24 w-24 rounded-md border border-brand-border object-cover"
+                />
+              ))}
+            </div>
+          ) : null}
+          <InputGroup>
+            <Label>{locale === "ar" ? "سبب الرفض" : "Rejection reason"}</Label>
+            <Textarea
+              value={rejectionReason}
+              onChange={(e) => setRejectionReason(e.target.value)}
+              rows={3}
+            />
+          </InputGroup>
+        </div>
+      ) : null}
+    </Modal>
+  );
+}

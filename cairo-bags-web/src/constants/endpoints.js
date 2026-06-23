@@ -1,0 +1,117 @@
+/** Swagger-verified Cairo Bags V1 API paths (no base URL). */
+export const ENDPOINTS = {
+  account: {
+    me: "/api/Account/Me",
+    register: "/api/Account/register",
+    login: "/api/Account/LogIn",
+    logout: "/api/Account/LogOut",
+    refreshToken: "/api/Account/refresh-token",
+    createAdmin: "/api/Account/create-admin",
+    signInGoogle: "/api/Account/sign-in-google",
+    updateUsername: "/api/Account/update-username",
+    forgotPasswordRequestCode: "/api/Account/forgot-password/request-code",
+    forgotPasswordComplete: "/api/Account/forgot-password/complete",
+    changePassword: "/api/Account/change-password",
+    setPassword: "/api/Account/set-password",
+    markFirstLoginDone: "/api/Account/mark-first-login-done",
+  },
+  file: {
+    upload: "/api/File/Upload",
+  },
+  categories: {
+    list: "/api/categories",
+    tree: "/api/categories/tree",
+    byId: (id) => `/api/categories/${id}`,
+    adminCreate: "/api/admin/categories",
+    adminUpdate: (id) => `/api/admin/categories/${id}`,
+    adminDelete: (id) => `/api/admin/categories/${id}`,
+  },
+  products: {
+    list: "/api/products",
+    featured: "/api/products/featured",
+    newArrivals: "/api/products/new-arrivals",
+    search: "/api/products/search",
+    byId: (id) => `/api/products/${id}`,
+    adminCreate: "/api/admin/products",
+    adminUpdate: (id) => `/api/admin/products/${id}`,
+    adminDelete: (id) => `/api/admin/products/${id}`,
+    images: (productId) => `/api/products/${productId}/images`,
+    adminUploadImage: (productId) => `/api/admin/products/${productId}/images`,
+    adminUploadVariantImage: (productId, variantId) =>
+      `/api/admin/products/${productId}/images/variant/${variantId}`,
+    adminSetPrimary: (productId, imageId) =>
+      `/api/admin/products/${productId}/images/${imageId}/primary`,
+    adminReorderImages: (productId) => `/api/admin/products/${productId}/images/reorder`,
+    adminDeleteImage: (productId, imageId) =>
+      `/api/admin/products/${productId}/images/${imageId}`,
+  },
+  inventory: {
+    status: (variantId) => `/api/inventory/${variantId}/status`,
+    adminList: "/api/admin/inventory",
+    adminLowStock: "/api/admin/inventory/low-stock",
+    adminByVariant: (variantId) => `/api/admin/inventory/${variantId}`,
+    adminMovements: (variantId) => `/api/admin/inventory/${variantId}/movements`,
+    adminAdjust: (variantId) => `/api/admin/inventory/${variantId}/adjust`,
+    adminReserve: (variantId) => `/api/admin/inventory/${variantId}/reserve`,
+    adminRelease: (variantId) => `/api/admin/inventory/${variantId}/release`,
+  },
+  cart: {
+    get: "/api/cart",
+    addItem: "/api/cart/items",
+    updateItem: (variantId) => `/api/cart/items/${variantId}`,
+    removeItem: (variantId) => `/api/cart/items/${variantId}`,
+    clear: "/api/cart",
+    merge: "/api/cart/merge",
+  },
+  checkout: {
+    create: "/api/checkout",
+  },
+  shippingAddresses: {
+    list: "/api/shipping-addresses",
+    create: "/api/shipping-addresses",
+  },
+  orders: {
+    list: "/api/orders",
+    byId: (id) => `/api/orders/${id}`,
+    cancel: (id) => `/api/orders/${id}/cancel`,
+  },
+  adminOrders: {
+    list: "/api/admin/orders",
+    byId: (id) => `/api/admin/orders/${id}`,
+    processing: (id) => `/api/admin/orders/${id}/processing`,
+    shipped: (id) => `/api/admin/orders/${id}/shipped`,
+    delivered: (id) => `/api/admin/orders/${id}/delivered`,
+    cancel: (id) => `/api/admin/orders/${id}/cancel`,
+    refund: (id) => `/api/admin/orders/${id}/refund`,
+  },
+  payments: {
+    proof: (orderId) => `/api/payments/${orderId}/proof`,
+    byOrder: (orderId) => `/api/payments/${orderId}`,
+  },
+  adminPayments: {
+    pending: "/api/admin/payments/pending",
+    byId: (paymentId) => `/api/admin/payments/${paymentId}`,
+    approve: (paymentId) => `/api/admin/payments/${paymentId}/approve`,
+    reject: (paymentId) => `/api/admin/payments/${paymentId}/reject`,
+  },
+  recommendations: {
+    trending: "/api/recommendations/trending",
+    recentlyViewed: "/api/recommendations/recently-viewed",
+    similar: (productId) => `/api/recommendations/similar/${productId}`,
+    frequentlyBoughtTogether: (productId) =>
+      `/api/recommendations/frequently-bought-together/${productId}`,
+  },
+  notifications: {
+    list: "/api/Notifications",
+    unreadCount: "/api/Notifications/unread-count",
+    markRead: (id) => `/api/Notifications/read/${id}`,
+    markAllRead: "/api/Notifications/read-all",
+  },
+  systemSettings: {
+    get: "/api/SystemSettings",
+    update: "/api/SystemSettings",
+  },
+  signalR: {
+    notifications: "/hubs/notifications",
+  },
+};
