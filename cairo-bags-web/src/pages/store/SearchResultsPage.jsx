@@ -1,0 +1,128 @@
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import { StoreLayout } from "../../layouts/StoreLayout.jsx";
+import { usePageTitle } from "../../hooks/usePageTitle.js";
+import { useLocale } from "../../components/layout/LanguageSwitcher.jsx";
+import * as productService from "../../services/productService.js";
+import {
+  ProductCard,
+  ProductGridSkeleton,
+  ProductSearch,
+  EmptyState,
+} from "../../components/store/index.js";
+import { buildProductQueryParams } from "../../utils/shopFilters.js";
+import { Button } from "../../components/ui/index.js";
+
+export function SearchResultsPage() {
+  const { locale } = useLocale();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const pageTitle = query
+    ? locale === "ar"
+      ? `نتائج: ${query}`
+      : `Results: ${query}`
+    : locale === "ar"
+      ? "بحث"
+      : "Search";
+  usePageTitle(pageTitle);
+
+  const loadResults = useCallback(async () => {
+    if (!query.trim()) {
+      setProducts([]);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await productService.searchProducts(
+        buildProductQueryParams({ searchTerm: query })
+      );
+      setProducts(Array.isArray(data) ? data : []);
+    } catch (err) {
+      setError(err);
+      setProducts([]);
+    } finally {
+      setLoading(false);
+    }
+  }, [query]);
+
+  useEffect(() => {
+    loadResults();
+  }, [loadResults]);
+
+  const countLabel = useMemo(() => {
+    if (!query) return "";
+    return locale === "ar"
+      ? `${products.length} نتيجة لـ "${query}"`
+      : `${products.length} result${products.length === 1 ? "" : "s"} for "${query}"`;
+  }, [locale, products.length, query]);
+
+  return (
+    <StoreLayout>
+      <div className="mb-8">
+        <h1 className="font-display text-3xl font-medium text-brand-text md:text-4xl">
+          {locale === "ar" ? "نتائج البحث" : "Search Results"}
+        </h1>
+      </div>
+
+      <ProductSearch
+        className="mb-8 max-w-xl"
+        defaultValue={query}
+        onSubmit={(q) => setSearchParams({ q })}
+      />
+
+      {!query ? (
+        <EmptyState
+          title={locale === "ar" ? "ابدأ البحث" : "Start searching"}
+          description={
+            locale === "ar"
+              ? "اكتب كلمة للبحث عن الحقائب"
+              : "Enter a term to find bags"
+          }
+        />
+      ) : null}
+
+      {query ? <p className="mb-4 text-sm text-brand-muted">{countLabel}</p> : null}
+
+      {query && loading ? <ProductGridSkeleton /> : null}
+      {query && !loading && error ? (
+        <EmptyState
+          title={locale === "ar" ? "تعذر البحث" : "Search failed"}
+          description={error.message}
+          action={
+            <Button variant="accent" onClick={loadResults}>
+              {locale === "ar" ? "إعادة المحاولة" : "Try again"}
+            </Button>
+          }
+        />
+      ) : null}
+      {query && !loading && !error && products.length === 0 ? (
+        <EmptyState
+          title={locale === "ar" ? "لا توجد نتائج" : "No results found"}
+          description={
+            locale === "ar"
+              ? "جرّب كلمات بحث مختلفة"
+              : "Try different search terms"
+          }
+          action={
+            <Link to="/shop">
+              <Button variant="outline">{locale === "ar" ? "تصفح المتجر" : "Browse Shop"}</Button>
+            </Link>
+          }
+        />
+      ) : null}
+      {query && !loading && !error && products.length > 0 ? (
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 md:gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id ?? product.Id} product={product} />
+          ))}
+        </div>
+      ) : null}
+    </StoreLayout>
+  );
+}
