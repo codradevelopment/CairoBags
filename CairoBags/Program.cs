@@ -419,6 +419,19 @@ app.MapHub<CatalogHub>("/hubs/catalog");
 app.MapHub<StatisticsHub>("/hubs/statistics");
 app.MapHub<StoreUpdateHub>("/hubs/store");
 
+app.MapGet("/api/debug-db", async (CairoBagsContext db) =>
+{
+    try
+    {
+        await db.Database.MigrateAsync();
+        return Results.Ok("Migration succeeded!");
+    }
+    catch (Exception ex)
+    {
+        return Results.Ok(new { message = ex.Message, stack = ex.StackTrace, inner = ex.InnerException?.Message });
+    }
+});
+
 // Health check endpoint for Railway
 app.MapGet("/health", () => Results.Ok(new { status = "healthy", timestamp = DateTime.UtcNow }));
 
