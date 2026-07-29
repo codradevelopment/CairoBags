@@ -1,0 +1,18 @@
+export const ORDER_STATUS = {
+  PENDING: "Pending",
+  AWAITING_PAYMENT: "AwaitingPayment",
+  PAYMENT_PROOF_SUBMITTED: "PaymentProofSubmitted",
+  PAYMENT_UNDER_REVIEW: "PaymentUnderReview",
+  PAYMENT_CONFIRMED: "PaymentConfirmed",
+  PROCESSING: "Processing",
+  SHIPPED: "Shipped",
+  DELIVERED: "Delivered",
+  COMPLETED: "Completed",
+  CANCELLED: "Cancelled",
+  REFUNDED: "Refunded",
+  CONFIRMED: "Confirmed",
+  PREPARING: "Preparing",
+  HANDED_TO_SHIPPING: "HandedToShipping",
+  AT_LOCAL_HUB: "AtLocalHub",
+  OUT_FOR_DELIVERY: "OutForDelivery",
+};
