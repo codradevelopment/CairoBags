@@ -1823,7 +1823,7 @@ namespace CairoBags.Migrations
                 table: "PaymentProofImages",
                 columns: new[] { "OrderPaymentId", "IsPrimary" },
                 unique: true,
-                filter: "\"IsPrimary\" = 1");
+                filter: "\"IsPrimary\" = true");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImages_ProductId_SortOrder",
@@ -1946,14 +1946,14 @@ namespace CairoBags.Migrations
                 table: "ReviewImages",
                 columns: new[] { "ProductReviewId", "IsPrimary" },
                 unique: true,
-                filter: "\"IsPrimary\" = 1");
+                filter: "\"IsPrimary\" = true");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShippingAddresses_UserId",
                 table: "ShippingAddresses",
                 column: "UserId",
                 unique: true,
-                filter: "\"IsDefault\" = 1");
+                filter: "\"IsDefault\" = true");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShippingZones_Code",

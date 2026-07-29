@@ -1659,7 +1659,7 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("UserId")
                         .IsUnique()
-                        .HasFilter("\"IsDefault\" = 1");
+                        .HasFilter("\"IsDefault\" = true");
 
                     b.ToTable("ShippingAddresses", (string)null);
                 });
@@ -2032,7 +2032,7 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("OrderPaymentId", "IsPrimary")
                         .IsUnique()
-                        .HasFilter("\"IsPrimary\" = 1");
+                        .HasFilter("\"IsPrimary\" = true");
 
                     b.ToTable("PaymentProofImages", (string)null);
                 });
@@ -2199,7 +2199,7 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("ProductReviewId", "IsPrimary")
                         .IsUnique()
-                        .HasFilter("\"IsPrimary\" = 1");
+                        .HasFilter("\"IsPrimary\" = true");
 
                     b.ToTable("ReviewImages", (string)null);
                 });

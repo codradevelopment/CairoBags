@@ -478,7 +478,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(e => e.UserId);
             entity.HasIndex(e => e.UserId)
                 .IsUnique()
-                .HasFilter("\"IsDefault\" = 1");
+                .HasFilter("\"IsDefault\" = true");
 
             entity.HasOne(e => e.User)
                 .WithMany(e => e.ShippingAddresses)
@@ -599,7 +599,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(e => e.OrderPaymentId);
             entity.HasIndex(e => new { e.OrderPaymentId, e.IsPrimary })
                 .IsUnique()
-                .HasFilter("\"IsPrimary\" = 1");
+                .HasFilter("\"IsPrimary\" = true");
 
             entity.HasOne(e => e.OrderPayment)
                 .WithMany(e => e.ProofImages)
@@ -661,7 +661,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(e => e.ProductReviewId);
             entity.HasIndex(e => new { e.ProductReviewId, e.IsPrimary })
                 .IsUnique()
-                .HasFilter("\"IsPrimary\" = 1");
+                .HasFilter("\"IsPrimary\" = true");
 
             entity.HasOne(e => e.ProductReview)
                 .WithMany(e => e.Images)
