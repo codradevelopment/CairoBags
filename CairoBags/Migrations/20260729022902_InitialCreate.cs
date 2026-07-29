@@ -785,8 +785,8 @@ namespace CairoBags.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Coupons", x => x.Id);
-                    table.CheckConstraint("CK_Coupons_Scope", "NOT ([ProductId] IS NOT NULL AND [CategoryId] IS NOT NULL)");
-                    table.CheckConstraint("CK_Coupons_UsageCount", "[UsageCount] >= 0");
+                    table.CheckConstraint("CK_Coupons_Scope", "NOT (\"ProductId\" IS NOT NULL AND \"CategoryId\" IS NOT NULL)");
+                    table.CheckConstraint("CK_Coupons_UsageCount", "\"UsageCount\" >= 0");
                     table.ForeignKey(
                         name: "FK_Coupons_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -906,7 +906,7 @@ namespace CairoBags.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserProductViews", x => x.Id);
-                    table.CheckConstraint("CK_UserProductViews_Viewer", "[UserId] IS NOT NULL OR [SessionId] IS NOT NULL");
+                    table.CheckConstraint("CK_UserProductViews_Viewer", "\"UserId\" IS NOT NULL OR \"SessionId\" IS NOT NULL");
                     table.ForeignKey(
                         name: "FK_UserProductViews_Products_ProductId",
                         column: x => x.ProductId,
@@ -1009,7 +1009,7 @@ namespace CairoBags.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductReviews", x => x.Id);
-                    table.CheckConstraint("CK_ProductReviews_Rating", "[Rating] >= 1 AND [Rating] <= 5");
+                    table.CheckConstraint("CK_ProductReviews_Rating", "\"Rating\" >= 1 AND \"Rating\" <= 5");
                     table.ForeignKey(
                         name: "FK_ProductReviews_Orders_OrderId",
                         column: x => x.OrderId,
@@ -1549,14 +1549,14 @@ namespace CairoBags.Migrations
                 table: "Carts",
                 column: "SessionId",
                 unique: true,
-                filter: "[SessionId] IS NOT NULL");
+                filter: "\"SessionId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_UserId",
                 table: "Carts",
                 column: "UserId",
                 unique: true,
-                filter: "[UserId] IS NOT NULL");
+                filter: "\"UserId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Categories_ParentCategoryId",
@@ -1823,7 +1823,7 @@ namespace CairoBags.Migrations
                 table: "PaymentProofImages",
                 columns: new[] { "OrderPaymentId", "IsPrimary" },
                 unique: true,
-                filter: "[IsPrimary] = 1");
+                filter: "\"IsPrimary\" = 1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductImages_ProductId_SortOrder",
@@ -1946,14 +1946,14 @@ namespace CairoBags.Migrations
                 table: "ReviewImages",
                 columns: new[] { "ProductReviewId", "IsPrimary" },
                 unique: true,
-                filter: "[IsPrimary] = 1");
+                filter: "\"IsPrimary\" = 1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShippingAddresses_UserId",
                 table: "ShippingAddresses",
                 column: "UserId",
                 unique: true,
-                filter: "[IsDefault] = 1");
+                filter: "\"IsDefault\" = 1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShippingZones_Code",

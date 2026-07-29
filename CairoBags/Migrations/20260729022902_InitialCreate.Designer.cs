@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CairoBags.Migrations
 {
     [DbContext(typeof(CairoBagsContext))]
-    [Migration("20260729022438_InitialCreate")]
+    [Migration("20260729022902_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -155,7 +155,7 @@ namespace CairoBags.Migrations
 
                     b.ToTable("UserProductViews", null, t =>
                         {
-                            t.HasCheckConstraint("CK_UserProductViews_Viewer", "[UserId] IS NOT NULL OR [SessionId] IS NOT NULL");
+                            t.HasCheckConstraint("CK_UserProductViews_Viewer", "\"UserId\" IS NOT NULL OR \"SessionId\" IS NOT NULL");
                         });
                 });
 
@@ -548,11 +548,11 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("SessionId")
                         .IsUnique()
-                        .HasFilter("[SessionId] IS NOT NULL");
+                        .HasFilter("\"SessionId\" IS NOT NULL");
 
                     b.HasIndex("UserId")
                         .IsUnique()
-                        .HasFilter("[UserId] IS NOT NULL");
+                        .HasFilter("\"UserId\" IS NOT NULL");
 
                     b.ToTable("Carts", (string)null);
                 });
@@ -754,9 +754,9 @@ namespace CairoBags.Migrations
 
                     b.ToTable("Coupons", null, t =>
                         {
-                            t.HasCheckConstraint("CK_Coupons_Scope", "NOT ([ProductId] IS NOT NULL AND [CategoryId] IS NOT NULL)");
+                            t.HasCheckConstraint("CK_Coupons_Scope", "NOT (\"ProductId\" IS NOT NULL AND \"CategoryId\" IS NOT NULL)");
 
-                            t.HasCheckConstraint("CK_Coupons_UsageCount", "[UsageCount] >= 0");
+                            t.HasCheckConstraint("CK_Coupons_UsageCount", "\"UsageCount\" >= 0");
                         });
                 });
 
@@ -1662,7 +1662,7 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("UserId")
                         .IsUnique()
-                        .HasFilter("[IsDefault] = 1");
+                        .HasFilter("\"IsDefault\" = 1");
 
                     b.ToTable("ShippingAddresses", (string)null);
                 });
@@ -2035,7 +2035,7 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("OrderPaymentId", "IsPrimary")
                         .IsUnique()
-                        .HasFilter("[IsPrimary] = 1");
+                        .HasFilter("\"IsPrimary\" = 1");
 
                     b.ToTable("PaymentProofImages", (string)null);
                 });
@@ -2118,7 +2118,7 @@ namespace CairoBags.Migrations
 
                     b.ToTable("ProductReviews", null, t =>
                         {
-                            t.HasCheckConstraint("CK_ProductReviews_Rating", "[Rating] >= 1 AND [Rating] <= 5");
+                            t.HasCheckConstraint("CK_ProductReviews_Rating", "\"Rating\" >= 1 AND \"Rating\" <= 5");
                         });
                 });
 
@@ -2202,7 +2202,7 @@ namespace CairoBags.Migrations
 
                     b.HasIndex("ProductReviewId", "IsPrimary")
                         .IsUnique()
-                        .HasFilter("[IsPrimary] = 1");
+                        .HasFilter("\"IsPrimary\" = 1");
 
                     b.ToTable("ReviewImages", (string)null);
                 });

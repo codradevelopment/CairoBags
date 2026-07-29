@@ -312,11 +312,11 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
 
             entity.HasIndex(e => e.UserId)
                 .IsUnique()
-                .HasFilter("[UserId] IS NOT NULL");
+                .HasFilter("\"UserId\" IS NOT NULL");
 
             entity.HasIndex(e => e.SessionId)
                 .IsUnique()
-                .HasFilter("[SessionId] IS NOT NULL");
+                .HasFilter("\"SessionId\" IS NOT NULL");
 
             entity.HasOne(e => e.User)
                 .WithOne(e => e.Cart)
@@ -478,7 +478,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(e => e.UserId);
             entity.HasIndex(e => e.UserId)
                 .IsUnique()
-                .HasFilter("[IsDefault] = 1");
+                .HasFilter("\"IsDefault\" = 1");
 
             entity.HasOne(e => e.User)
                 .WithMany(e => e.ShippingAddresses)
@@ -599,7 +599,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(e => e.OrderPaymentId);
             entity.HasIndex(e => new { e.OrderPaymentId, e.IsPrimary })
                 .IsUnique()
-                .HasFilter("[IsPrimary] = 1");
+                .HasFilter("\"IsPrimary\" = 1");
 
             entity.HasOne(e => e.OrderPayment)
                 .WithMany(e => e.ProofImages)
@@ -634,7 +634,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
 
             entity.ToTable(t => t.HasCheckConstraint(
                 "CK_ProductReviews_Rating",
-                "[Rating] >= 1 AND [Rating] <= 5"));
+                "\"Rating\" >= 1 AND \"Rating\" <= 5"));
 
             entity.HasOne(e => e.Product)
                 .WithMany(e => e.Reviews)
@@ -661,7 +661,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.HasIndex(e => e.ProductReviewId);
             entity.HasIndex(e => new { e.ProductReviewId, e.IsPrimary })
                 .IsUnique()
-                .HasFilter("[IsPrimary] = 1");
+                .HasFilter("\"IsPrimary\" = 1");
 
             entity.HasOne(e => e.ProductReview)
                 .WithMany(e => e.Images)
@@ -699,10 +699,10 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             {
                 t.HasCheckConstraint(
                     "CK_Coupons_Scope",
-                    "NOT ([ProductId] IS NOT NULL AND [CategoryId] IS NOT NULL)");
+                    "NOT (\"ProductId\" IS NOT NULL AND \"CategoryId\" IS NOT NULL)");
                 t.HasCheckConstraint(
                     "CK_Coupons_UsageCount",
-                    "[UsageCount] >= 0");
+                    "\"UsageCount\" >= 0");
             });
 
             entity.Property(e => e.Code).HasMaxLength(32);
@@ -852,7 +852,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
         {
             entity.ToTable("UserProductViews", t => t.HasCheckConstraint(
                 "CK_UserProductViews_Viewer",
-                "[UserId] IS NOT NULL OR [SessionId] IS NOT NULL"));
+                "\"UserId\" IS NOT NULL OR \"SessionId\" IS NOT NULL"));
 
             entity.Property(e => e.UserId).HasMaxLength(450);
             entity.Property(e => e.SessionId).HasMaxLength(128);
