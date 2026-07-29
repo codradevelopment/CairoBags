@@ -157,7 +157,7 @@ builder.Services.AddSwaggerGen(option =>
 // Database
 builder.Services.AddDbContext<CairoBagsContext>(option =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("conn"));
+    option.UseNpgsql(builder.Configuration.GetConnectionString("conn"));
 });
 
 // Identity
@@ -263,6 +263,21 @@ builder.Services.AddSingleton<IUserIdProvider, NameIdentifierUserIdProvider>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+// Auto-apply pending migrations on startup (used in Railway/production deployments)
+try
+{
+    using var migScope = app.Services.CreateScope();
+    var migDb = migScope.ServiceProvider.GetRequiredService<CairoBagsContext>();
+    app.Logger.LogInformation("Applying pending database migrations...");
+    await migDb.Database.MigrateAsync();
+    app.Logger.LogInformation("All migrations applied successfully.");
+}
+catch (Exception ex)
+{
+    app.Logger.LogError(ex, "Database migration failed on startup.");
+    throw;
+}
 
 // Idempotent default category seeding (insert missing only — never overwrite/delete).
 try
@@ -383,5 +398,8 @@ app.MapHub<NotificationHub>("/notificationsHub");
 app.MapHub<CatalogHub>("/hubs/catalog");
 app.MapHub<StatisticsHub>("/hubs/statistics");
 app.MapHub<StoreUpdateHub>("/hubs/store");
+
+// Health check endpoint for Railway
+app.MapGet("/health", () => Results.Ok(new { status = "healthy", timestamp = DateTime.UtcNow }));
 
 app.Run();

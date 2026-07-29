@@ -4,8 +4,8 @@ using CairoBags.Helpers;
 using CairoBags.Models.Catalog;
 using CairoBags.Models.Inventories;
 using CairoBags.Models.Orders;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace CairoBags.Service;
 
@@ -930,7 +930,7 @@ public class ProductService : IProductService
     {
         for (Exception? e = ex; e != null; e = e.InnerException)
         {
-            if (e is SqlException sql && (sql.Number == 2601 || sql.Number == 2627))
+            if (e is NpgsqlException npgsql && npgsql.SqlState == "23505")
                 return true;
         }
 

@@ -3,8 +3,8 @@ using CairoBags.Hubs;
 using CairoBags.Data;
 using CairoBags.Models;
 using Microsoft.AspNetCore.SignalR;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace CairoBags.Service;
 
@@ -87,7 +87,7 @@ public class NotificationService
     {
         for (Exception? e = ex; e != null; e = e.InnerException)
         {
-            if (e is SqlException sql && (sql.Number == 2601 || sql.Number == 2627))
+            if (e is NpgsqlException npgsql && npgsql.SqlState == "23505")
                 return true;
         }
         return false;
