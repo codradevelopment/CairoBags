@@ -167,7 +167,8 @@ if (!string.IsNullOrWhiteSpace(databaseUrl))
         Port = databaseUri.Port,
         Username = userInfo[0],
         Password = userInfo[1],
-        Database = databaseUri.LocalPath.TrimStart('/')
+        Database = databaseUri.LocalPath.TrimStart('/'),
+        SslMode = Npgsql.SslMode.Disable
     };
     connectionString = builderStr.ToString();
 }
