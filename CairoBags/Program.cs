@@ -155,9 +155,26 @@ builder.Services.AddSwaggerGen(option =>
 });
 
 // Database
+var connectionString = builder.Configuration.GetConnectionString("conn");
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+if (!string.IsNullOrWhiteSpace(databaseUrl))
+{
+    var databaseUri = new Uri(databaseUrl);
+    var userInfo = databaseUri.UserInfo.Split(':');
+    var builderStr = new Npgsql.NpgsqlConnectionStringBuilder
+    {
+        Host = databaseUri.Host,
+        Port = databaseUri.Port,
+        Username = userInfo[0],
+        Password = userInfo[1],
+        Database = databaseUri.LocalPath.TrimStart('/')
+    };
+    connectionString = builderStr.ToString();
+}
+
 builder.Services.AddDbContext<CairoBagsContext>(option =>
 {
-    option.UseNpgsql(builder.Configuration.GetConnectionString("conn"));
+    option.UseNpgsql(connectionString);
 });
 
 // Identity
