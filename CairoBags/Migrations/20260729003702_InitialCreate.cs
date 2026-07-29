@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -224,7 +224,7 @@ namespace CairoBags.Migrations
                     HasPassword = table.Column<bool>(type: "boolean", nullable: false),
                     IsFirstLogin = table.Column<bool>(type: "boolean", nullable: false),
                     IsGoogleUser = table.Column<bool>(type: "boolean", nullable: false),
-                    NotificationSettingsJson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NotificationSettingsJson = table.Column<string>(type: "text", nullable: true),
                     RefreshToken = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
                     RefreshTokenExpiresUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     MustChangePassword = table.Column<bool>(type: "boolean", nullable: false),
@@ -398,7 +398,7 @@ namespace CairoBags.Migrations
                     PaymentMethodId = table.Column<int>(type: "integer", nullable: false),
                     LanguageCode = table.Column<string>(type: "character(2)", fixedLength: true, maxLength: 2, nullable: false),
                     DisplayName = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Instructions = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Instructions = table.Column<string>(type: "text", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     CreatedBy = table.Column<string>(type: "text", nullable: true),
@@ -563,8 +563,8 @@ namespace CairoBags.Migrations
                     EntityName = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     EntityId = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
                     Action = table.Column<byte>(type: "smallint", nullable: false),
-                    OldValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NewValues = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OldValues = table.Column<string>(type: "text", nullable: true),
+                    NewValues = table.Column<string>(type: "text", nullable: true),
                     IpAddress = table.Column<string>(type: "character varying(45)", maxLength: 45, nullable: true),
                     UserAgent = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -1380,48 +1380,48 @@ namespace CairoBags.Migrations
             migrationBuilder.InsertData(
                 table: "SystemSettings",
                 columns: new[] { "Id", "BetaFeatures", "DefaultCurrency", "FacebookUrl", "FreeShippingThreshold", "InstagramUrl", "MaintenanceMode", "StoreAddress", "StoreEmail", "StoreNameAr", "StoreNameEn", "StorePhone", "TikTokUrl", "WhatsAppNumber" },
-                values: new object[] { 1, false, "EGP", null, null, null, false, null, null, "كايرو باجز", "Cairo Bags", null, null, null });
+                values: new object[] { 1, false, "EGP", null, null, null, false, null, null, "????? ????", "Cairo Bags", null, null, null });
 
             migrationBuilder.InsertData(
                 table: "Governorates",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DisplayOrder", "IsSelectable", "NameAr", "NameEn", "ShippingFee", "ShippingZoneId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, true, "القاهرة", "Cairo", 80m, 1, null, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, true, "الجيزة", "Giza", 80m, 2, null, null },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 6, true, "الإسكندرية", "Alexandria", 85m, 3, null, null },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 7, true, "الدقهلية", "Dakahlia", 90m, 3, null, null },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 0, false, "البحر الأحمر", "Red Sea", 125m, 3, null, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 14, true, "البحيرة", "Beheira", 90m, 3, null, null },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 17, true, "الفيوم", "Fayoum", 95m, 3, null, null },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 8, true, "الغربية", "Gharbia", 90m, 3, null, null },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 11, true, "الإسماعيلية", "Ismailia", 90m, 3, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 16, true, "المنوفية", "Monufia", 90m, 3, null, null },
-                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 19, true, "المنيا", "Minya", 95m, 3, null, null },
-                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 0, false, "القليوبية", "Qalyubia", 80m, 3, null, null },
-                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 0, false, "الوادي الجديد", "New Valley", 135m, 3, null, null },
-                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 12, true, "السويس", "Suez", 90m, 3, null, null },
-                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 24, true, "أسوان", "Aswan", 105m, 3, null, null },
-                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 20, true, "أسيوط", "Assiut", 95m, 3, null, null },
-                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 18, true, "بني سويف", "Beni Suef", 95m, 3, null, null },
-                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 10, true, "بورسعيد", "Port Said", 90m, 3, null, null },
-                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 15, true, "دمياط", "Damietta", 90m, 3, null, null },
-                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 9, true, "الشرقية", "Sharqia", 90m, 3, null, null },
-                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 32, true, "جنوب سيناء", "South Sinai", 155m, 3, null, null },
-                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 13, true, "كفر الشيخ", "Kafr El Sheikh", 90m, 3, null, null },
-                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 27, true, "مرسى مطروح", "Marsa Matruh", 125m, 3, null, null },
-                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 23, true, "الأقصر", "Luxor", 105m, 3, null, null },
-                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 22, true, "قنا", "Qena", 105m, 3, null, null },
-                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 31, true, "شمال سيناء", "North Sinai", 155m, 3, null, null },
-                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 21, true, "سوهاج", "Sohag", 95m, 3, null, null },
-                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 3, true, "الخانكة", "Khanka", 80m, 1, null, null },
-                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 4, true, "أبو زعبل", "Abu Zaabal", 80m, 1, null, null },
-                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 5, true, "الجبل الأصفر", "El Gebel El Asfar", 80m, 1, null, null },
-                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 25, true, "الغردقة", "Hurghada", 125m, 3, null, null },
-                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 26, true, "رأس غارب", "Ras Ghareb", 125m, 3, null, null },
-                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 28, true, "الساحل الشمالي", "North Coast", 125m, 3, null, null },
-                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 29, true, "القصير", "El Quseir", 135m, 3, null, null },
-                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 30, true, "مرسى علم", "Marsa Alam", 135m, 3, null, null }
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, true, "???????", "Cairo", 80m, 1, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, true, "??????", "Giza", 80m, 2, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 6, true, "??????????", "Alexandria", 85m, 3, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 7, true, "????????", "Dakahlia", 90m, 3, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 0, false, "????? ??????", "Red Sea", 125m, 3, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 14, true, "???????", "Beheira", 90m, 3, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 17, true, "??????", "Fayoum", 95m, 3, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 8, true, "???????", "Gharbia", 90m, 3, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 11, true, "???????????", "Ismailia", 90m, 3, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 16, true, "????????", "Monufia", 90m, 3, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 19, true, "??????", "Minya", 95m, 3, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 0, false, "?????????", "Qalyubia", 80m, 3, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 0, false, "?????? ??????", "New Valley", 135m, 3, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 12, true, "??????", "Suez", 90m, 3, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 24, true, "?????", "Aswan", 105m, 3, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 20, true, "?????", "Assiut", 95m, 3, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 18, true, "??? ????", "Beni Suef", 95m, 3, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 10, true, "???????", "Port Said", 90m, 3, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 15, true, "?????", "Damietta", 90m, 3, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 9, true, "???????", "Sharqia", 90m, 3, null, null },
+                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 32, true, "???? ?????", "South Sinai", 155m, 3, null, null },
+                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 13, true, "??? ?????", "Kafr El Sheikh", 90m, 3, null, null },
+                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 27, true, "???? ?????", "Marsa Matruh", 125m, 3, null, null },
+                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 23, true, "??????", "Luxor", 105m, 3, null, null },
+                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 22, true, "???", "Qena", 105m, 3, null, null },
+                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 31, true, "???? ?????", "North Sinai", 155m, 3, null, null },
+                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 21, true, "?????", "Sohag", 95m, 3, null, null },
+                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 3, true, "???????", "Khanka", 80m, 1, null, null },
+                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 4, true, "??? ????", "Abu Zaabal", 80m, 1, null, null },
+                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 5, true, "????? ??????", "El Gebel El Asfar", 80m, 1, null, null },
+                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 25, true, "???????", "Hurghada", 125m, 3, null, null },
+                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 26, true, "??? ????", "Ras Ghareb", 125m, 3, null, null },
+                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 28, true, "?????? ???????", "North Coast", 125m, 3, null, null },
+                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 29, true, "??????", "El Quseir", 135m, 3, null, null },
+                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, 30, true, "???? ???", "Marsa Alam", 135m, 3, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1430,17 +1430,17 @@ namespace CairoBags.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Cash On Delivery", "Pay the courier when your order arrives.", "en", 1, null, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "الدفع عند الاستلام", "ادفع للمندوب عند استلام الطلب.", "ar", 1, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "????? ??? ????????", "???? ??????? ??? ?????? ?????.", "ar", 1, null, null },
                     { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "InstaPay", "Transfer the order total via InstaPay, then upload your payment screenshot.", "en", 2, null, null },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "إنستاباي", "حوّل إجمالي الطلب عبر إنستاباي، ثم ارفع صورة إثبات الدفع.", "ar", 2, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "????????", "???? ?????? ????? ??? ????????? ?? ???? ???? ????? ?????.", "ar", 2, null, null },
                     { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Vodafone Cash", "Send the order total to our Vodafone Cash wallet, then upload your payment screenshot.", "en", 3, null, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "فودافون كاش", "أرسل إجمالي الطلب إلى محفظة فودافون كاش الخاصة بنا، ثم ارفع صورة إثبات الدفع.", "ar", 3, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "??????? ???", "???? ?????? ????? ??? ????? ??????? ??? ?????? ???? ?? ???? ???? ????? ?????.", "ar", 3, null, null },
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Orange Cash", "Send the order total to our Orange Cash wallet, then upload your payment screenshot.", "en", 4, null, null },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "أورانج كاش", "أرسل إجمالي الطلب إلى محفظة أورانج كاش الخاصة بنا، ثم ارفع صورة إثبات الدفع.", "ar", 4, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "?????? ???", "???? ?????? ????? ??? ????? ?????? ??? ?????? ???? ?? ???? ???? ????? ?????.", "ar", 4, null, null },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "Etisalat Cash", "Send the order total to our Etisalat Cash wallet, then upload your payment screenshot.", "en", 5, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "اتصالات كاش", "أرسل إجمالي الطلب إلى محفظة اتصالات كاش الخاصة بنا، ثم ارفع صورة إثبات الدفع.", "ar", 5, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "??????? ???", "???? ?????? ????? ??? ????? ??????? ??? ?????? ???? ?? ???? ???? ????? ?????.", "ar", 5, null, null },
                     { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "WE Pay", "Send the order total via WE Pay, then upload your payment screenshot.", "en", 6, null, null },
-                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "وي باي", "أرسل إجمالي الطلب عبر وي باي، ثم ارفع صورة إثبات الدفع.", "ar", 6, null, null }
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "?? ???", "???? ?????? ????? ??? ?? ???? ?? ???? ???? ????? ?????.", "ar", 6, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1449,11 +1449,11 @@ namespace CairoBags.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "en", "Cairo", 1, null, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "ar", "القاهرة", 1, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "ar", "???????", 1, null, null },
                     { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "en", "Giza", 2, null, null },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "ar", "الجيزة", 2, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "ar", "??????", 2, null, null },
                     { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "en", "Other Governorates", 3, null, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "ar", "باقي المحافظات", 3, null, null }
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, "ar", "???? ?????????", 3, null, null }
                 });
 
             migrationBuilder.CreateIndex(

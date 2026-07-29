@@ -142,7 +142,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.ToTable("Users");
             entity.Property(e => e.AuthProvider).HasMaxLength(32).HasDefaultValue("Local");
             entity.Property(e => e.PreferredLanguage).HasMaxLength(2).HasDefaultValue("en");
-            entity.Property(e => e.NotificationSettingsJson).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.NotificationSettingsJson).HasColumnType("text");
             entity.Property(e => e.RefreshToken).HasMaxLength(512);
         });
     }
@@ -553,7 +553,7 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
 
             entity.Property(e => e.LanguageCode).HasMaxLength(2).IsFixedLength();
             entity.Property(e => e.DisplayName).HasMaxLength(200);
-            entity.Property(e => e.Instructions).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.Instructions).HasColumnType("text");
 
             entity.HasIndex(e => new { e.PaymentMethodId, e.LanguageCode }).IsUnique();
 
@@ -931,8 +931,8 @@ public class CairoBagsContext : IdentityDbContext<ApplicationUser>
             entity.Property(e => e.EntityName).HasMaxLength(128);
             entity.Property(e => e.EntityId).HasMaxLength(64);
             entity.Property(e => e.Action).HasConversion<byte>();
-            entity.Property(e => e.OldValues).HasColumnType("nvarchar(max)");
-            entity.Property(e => e.NewValues).HasColumnType("nvarchar(max)");
+            entity.Property(e => e.OldValues).HasColumnType("text");
+            entity.Property(e => e.NewValues).HasColumnType("text");
             entity.Property(e => e.IpAddress).HasMaxLength(45);
             entity.Property(e => e.UserAgent).HasMaxLength(512);
 
