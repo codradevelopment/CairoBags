@@ -22,7 +22,14 @@ public class EmailQueueBackgroundService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await RequeuePendingJobsAsync(stoppingToken);
+        try
+        {
+            await RequeuePendingJobsAsync(stoppingToken);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to requeue pending email jobs on startup. Database might not be ready yet.");
+        }
 
         await foreach (var jobId in _emailQueue.Reader.ReadAllAsync(stoppingToken))
         {
