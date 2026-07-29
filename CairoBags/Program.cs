@@ -320,7 +320,7 @@ if (app.Environment.IsDevelopment())
 {
     using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<CairoBagsContext>();
-    var connectionString = context.Database.GetConnectionString() ?? "(null)";
+    var devConnectionString = context.Database.GetConnectionString() ?? "(null)";
     try
     {
         var canConnect = await context.Database.CanConnectAsync();
