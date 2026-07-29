@@ -245,10 +245,15 @@ if (disableAuthorization)
 {
     if (!builder.Environment.IsDevelopment())
     {
-        throw new InvalidOperationException("CRITICAL SECURITY RISK: Testing:DisableAuthorization cannot be true in non-development environments.");
+        // In production, silently ignore the flag instead of crashing
+        Console.Error.WriteLine("WARNING: Testing:DisableAuthorization=true is ignored in non-Development environments.");
+        disableAuthorization = false;
     }
-    builder.Services.AddSingleton<IAuthorizationHandler, AllowAllAuthorizationHandler>();
-    Console.Error.WriteLine("WARNING: Testing:DisableAuthorization=true — all [Authorize] checks are bypassed.");
+    else
+    {
+        builder.Services.AddSingleton<IAuthorizationHandler, AllowAllAuthorizationHandler>();
+        Console.Error.WriteLine("WARNING: Testing:DisableAuthorization=true — all [Authorize] checks are bypassed.");
+    }
 }
 
 
