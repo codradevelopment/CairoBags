@@ -321,9 +321,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
-// Migrations removed in Phase 1 — CairoBags greenfield schema will be added in a later phase.
 
-// معالج استثناءات عام — يمنع أي استثناء من إيقاف التطبيق أو فتح فيجوال ستوديو
 app.UseExceptionHandler(err =>
 {
     err.Run(async ctx =>
