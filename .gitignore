@@ -13,6 +13,8 @@
 # Node / frontend
 cairo-bags-web/node_modules/
 cairo-bags-web/dist/
+scripts/node_modules/
+node_modules/
 
 # Environment & secrets
 .env
