@@ -275,8 +275,7 @@ try
 }
 catch (Exception ex)
 {
-    app.Logger.LogError(ex, "Database migration failed on startup.");
-    throw;
+    app.Logger.LogError(ex, "Database migration failed on startup. The app will continue but may not function correctly.");
 }
 
 // Idempotent default category seeding (insert missing only — never overwrite/delete).
