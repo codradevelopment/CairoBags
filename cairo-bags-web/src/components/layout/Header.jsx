@@ -107,6 +107,10 @@ export function Header({ className }) {
           </div>
 
           <div className="cb-header-premium__actions">
+            <LanguageSwitcher
+              unstyled
+              className="cb-header-icon-btn cb-header-lang-btn"
+            />
             <button
               type="button"
               className="cb-header-icon-btn lg:hidden"
@@ -116,10 +120,6 @@ export function Header({ className }) {
             >
               <SearchIcon />
             </button>
-            <LanguageSwitcher
-              unstyled
-              className="cb-header-icon-btn cb-header-lang-btn"
-            />
             <NotificationDropdown triggerClassName="cb-header-icon-btn cb-header-icon-btn--notify" />
             {!readOnly ? <WishlistHeaderButton className="cb-header-icon-btn" /> : null}
             {!readOnly ? <CartButton className="cb-header-icon-btn" /> : null}
