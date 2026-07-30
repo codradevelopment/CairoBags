@@ -120,8 +120,8 @@ export function Header({ className }) {
               unstyled
               className="cb-header-icon-btn cb-header-lang-btn"
             />
-            <NotificationDropdown triggerClassName="cb-header-icon-btn cb-header-icon-btn--notify hidden sm:inline-flex" />
-            {!readOnly ? <WishlistHeaderButton className="cb-header-icon-btn hidden sm:inline-flex" /> : null}
+            <NotificationDropdown triggerClassName="cb-header-icon-btn cb-header-icon-btn--notify" />
+            {!readOnly ? <WishlistHeaderButton className="cb-header-icon-btn" /> : null}
             {!readOnly ? <CartButton className="cb-header-icon-btn" /> : null}
             <UserDropdown triggerClassName="cb-header-user-btn" />
           </div>
