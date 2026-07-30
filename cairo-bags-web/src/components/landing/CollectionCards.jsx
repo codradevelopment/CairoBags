@@ -243,9 +243,11 @@ export function CollectionCards() {
     categoryService
       .getCategories()
       .then((data) => {
+        console.log("DEBUG: Categories from API:", data);
         if (!cancelled) setCategories(Array.isArray(data) ? data : []);
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error("DEBUG: Failed to fetch categories", err);
         if (!cancelled) setCategories([]);
       })
       .finally(() => {
