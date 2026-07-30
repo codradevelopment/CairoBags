@@ -34,7 +34,7 @@ function handleMagneticLeave(event) {
   el.style.setProperty("--my", "0px");
 }
 
-export function Navbar({ className, links = storeNavLinks, orientation = "horizontal" }) {
+export function Navbar({ className, links = storeNavLinks, orientation = "horizontal", onNavigate }) {
   const { locale } = useLocale();
   const location = useLocation();
   const navigate = useNavigate();
@@ -74,6 +74,7 @@ export function Navbar({ className, links = storeNavLinks, orientation = "horizo
                   navigate,
                 });
               }
+              onNavigate?.();
             }}
           >
             {orientation === "horizontal" ? (

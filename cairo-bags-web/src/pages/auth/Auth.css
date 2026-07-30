@@ -416,12 +416,29 @@
     display: none;
   }
 
+  .auth-page .auth-wrapper:not(.panel-active) .login-form-box {
+    display: block;
+    animation: mobile-fade-in 0.4s ease-out forwards;
+  }
+
   .auth-page .auth-wrapper.panel-active .login-form-box {
     display: none;
   }
 
   .auth-page .auth-wrapper.panel-active .register-form-box {
     display: block;
+    animation: mobile-fade-in 0.4s ease-out forwards;
+  }
+
+  @keyframes mobile-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .auth-page .slide-panel-wrapper {
