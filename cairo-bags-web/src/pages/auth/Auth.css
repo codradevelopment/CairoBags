@@ -389,38 +389,37 @@
 @media (max-width: 768px) {
   .auth-page .auth-wrapper,
   .auth-page .auth-wrapper.auth-wrapper--register {
-    min-height: auto;
+    min-height: 0;
     width: 100%;
     max-width: 100%;
     border-radius: 16px;
+    overflow: visible;
   }
 
-  .auth-page .auth-form-box {
-    position: static !important;
-    width: 100% !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-
+  /* Reset ALL form-box positioning for mobile */
+  .auth-page .auth-form-box,
   .auth-page .login-form-box,
   .auth-page .register-form-box {
-    position: static !important;
-    width: 100% !important;
-    left: 0 !important;
-    transform: none !important;
-    opacity: 1 !important;
-    z-index: 1 !important;
+    position: static;
+    width: 100%;
+    left: 0;
+    transform: none;
+    z-index: 1;
+    height: auto;
   }
 
+  /* Default state: show login, hide register */
   .auth-page .register-form-box {
     display: none;
+    opacity: 1;
   }
 
-  .auth-page .auth-wrapper:not(.panel-active) .login-form-box {
+  .auth-page .login-form-box {
     display: block;
-    animation: mobile-fade-in 0.4s ease-out forwards;
+    opacity: 1;
   }
 
+  /* Panel-active state: show register, hide login */
   .auth-page .auth-wrapper.panel-active .login-form-box {
     display: none;
   }
@@ -441,14 +440,17 @@
     }
   }
 
+  /* Hide the sliding panel entirely on mobile */
   .auth-page .slide-panel-wrapper {
-    display: none !important;
+    display: none;
   }
 
+  /* Form padding and height reset */
   .auth-page form {
-    padding: 32px 28px;
+    padding: 32px 24px;
     position: static;
     height: auto;
+    min-height: auto;
   }
 
   .auth-page h1 {
@@ -456,16 +458,22 @@
     margin-bottom: 12px;
   }
 
+  .auth-page p {
+    margin: 12px 0 20px;
+    font-size: 14px;
+  }
+
   .auth-page input {
     padding: 12px 16px;
     font-size: 14px;
   }
 
-  .auth-page button {
+  .auth-page button:not(.password-toggle-btn):not(.transparent-btn) {
     padding: 12px 42px;
     font-size: 12px;
   }
 
+  /* Show the mobile switch buttons */
   .auth-page .mobile-switch {
     display: block;
     margin-top: 22px;
@@ -476,6 +484,7 @@
   .auth-page .mobile-switch p {
     margin: 10px 0;
     font-size: 14px;
+    color: var(--text-main);
   }
 
   .auth-page .mobile-switch button {
@@ -485,6 +494,7 @@
     padding: 10px 32px;
     margin-top: 12px;
     box-shadow: none;
+    font-size: 12px;
   }
 
   .auth-page .mobile-switch button:hover {

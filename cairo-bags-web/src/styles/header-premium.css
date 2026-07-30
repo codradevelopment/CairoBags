@@ -582,7 +582,41 @@
 
 @media (max-width: 640px) {
   .cb-header-premium__container {
-    padding-inline: 20px;
+    padding-inline: 16px;
+  }
+
+  .cb-header-premium__actions {
+    gap: 0;
+  }
+
+  .cb-header-icon-btn {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.375rem;
+  }
+
+  .cb-header-user-btn {
+    padding: 0.25rem 0.375rem;
+    gap: 6px;
+  }
+
+  .cb-header-user-btn span {
+    display: none;
+  }
+
+  :root {
+    --cb-header-height: 64px;
+    --cb-header-height-scrolled: 56px;
+  }
+}
+
+@media (max-width: 400px) {
+  .cb-header-premium__container {
+    padding-inline: 12px;
+  }
+
+  .cb-header-premium__brand-name {
+    display: none;
   }
 }
 
